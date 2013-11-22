@@ -1,0 +1,61 @@
+The LcdRowSlider library uses the LiquidCrystal library and the user
+defineable characters (via createChar) to provide a slider that extends
+across a number of columns and can display five different levels per column.For example in a 16x2 LCD display the graph can display up to 80 different
+levels (including zero). While the code is reasonably general, it does
+assume a 5x8 pixel LCD character.
+
+To use the code you need to create an LcdRowSlider object. The constructor
+take the following parameters:-
+
+    LiquidCrystal& lcd
+
+        A LiquidCrystal object.
+
+    int32_t min
+
+        The minimum value of the slider
+
+    int32_t max
+
+        The maximum value of the slider
+
+    uint8_t row
+
+        The display row where the slider will be drawn
+
+    uint8_t firstColumn 
+    
+        The first column of the slider (default is 0)
+
+    uint8_t lastColumn
+
+        The last column of the slider (default is 15)
+
+The methods are as follows:
+
+    void value(int32_t value);
+
+        Set the slider to 'value', scaled between min and max.
+
+    void unscaled(uint8_t value);
+
+        The unscaled method allows you to to set the slider to a specific
+        level without using a scale between min and max. For example if the
+        slider is over 16 columns the graph can have an unscaled value
+        between 0 and 79.
+
+    uint8_t getRow() const;
+
+        Returns the row number where the slider will be displayed
+
+    int32_t getMin() const;
+
+        Get the minimum value that the slider is mapped to.
+
+    int32_t getMax() const;
+
+        Get the maximum value that the slider is mapped to.
+
+    void setMinMax(int32_t min, int32_t max);
+
+        Set the minimum and maximum values that the slider is mapped to.
