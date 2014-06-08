@@ -1,15 +1,26 @@
-The LcdRowSlider library uses the LiquidCrystal library and the user
-defineable characters (via createChar) to provide a slider that extends
-across a number of columns and can display five different levels per column.For example in a 16x2 LCD display the graph can display up to 80 different
-levels (including zero). While the code is reasonably general, it does
-assume a 5x8 pixel LCD character.
+The LcdRowSlider library is a templated class that uses the LiquidCrystal
+library (or similar) and the user defineable characters (via createChar) to
+provide a slider that extends across a number of columns and can display
+five different levels per column. For example in a 16x2 LCD display the
+slider can have up to 80 different levels (not including zero). While the
+code is reasonably general, it does assume a 5x8 pixel LCD character.
+
+To use the code you need to create an LcdRowSlider object, using the
+specific class that implements the calls to the LCD. For example to use the
+class with the standard LiquidCrystal class you create the object like this.
+
+    LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
+    LcdRowSlider<LiquidCrystal> lcdRowSlider(lcd, 0, 80, 1);
+
+The advantage of using a template is that you can use any LiquidCrystal
+library with this class. For example LiquidCrystal_I2C.
 
 To use the code you need to create an LcdRowSlider object. The constructor
 take the following parameters:-
 
-    LiquidCrystal& lcd
+    LiquidCrystal_T& lcd
 
-        A LiquidCrystal object.
+        An object of the class you are using to drive the LCD.
 
     int32_t min
 
